@@ -12,12 +12,10 @@ Fork, then clone this repository.
 
 ```
 cd dockercloud-pgAdmin4
-git submodule init
-git submodule update
-
 docker build -t pgadmin4:latest .
 docker run --name some-pgadmin4 -p 5050:5050 -d pgadmin4
 ```
+
 Then you can hit http://localhost:5050 or http://host-ip:5050 in your browser.
 
 ## Screenshot
