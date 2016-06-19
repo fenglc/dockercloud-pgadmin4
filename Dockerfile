@@ -6,7 +6,7 @@ COPY pgadmin4 /pgadmin4
 RUN apk update && \
 	apk --no-cache add python-dev py-pip postgresql-dev gcc musl-dev && \
 	pip install -r /pgadmin4/requirements_py2.txt && \
-	rm -rf "/tmp/*" "/root/.cache" `find / -regex '.*\.py[co]'`
+	rm -rf "/tmp/*" "/root/.cache"
 
 RUN cd /pgadmin4/web/ && \
 	cp config.py config_local.py && \
