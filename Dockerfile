@@ -1,8 +1,8 @@
 FROM alpine
 MAINTAINER fenglc <fenglc89@gmail.com>
 
-ENV PGADMIN4_VERSION 		1.0-beta2
-ENV PGADMIN4_DOWNLOAD_URL	https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v1.0-beta2/pip/pgadmin4-1.0b2-py2-none-any.whl
+ENV PGADMIN4_VERSION 		1.0-beta3
+ENV PGADMIN4_DOWNLOAD_URL	https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v1.0-beta3/pip/pgadmin4-1.0b3-py2-none-any.whl
 
 RUN set -x \
 	&& apk add --no-cache python-dev \
