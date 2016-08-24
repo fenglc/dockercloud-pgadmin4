@@ -18,6 +18,10 @@ RUN set -x \
 	&&  apk del .build-deps \
 	&&  rm -rf /root/.cache
 
+# Metadata
+LABEL org.label-schema.url="https://www.pgadmin.org" \
+      org.label-schema.license="PostgreSQL"
+
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
