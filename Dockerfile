@@ -1,4 +1,4 @@
-FROM python:alpine
+FROM python:2-alpine
 MAINTAINER fenglc <fenglc89@gmail.com>
 
 COPY pgadmin4 /pgadmin4	
@@ -9,13 +9,17 @@ RUN set -x \
 			gcc \
 			postgresql-dev \
 			musl-dev \
-	&&  pip install -r /pgadmin4/requirements_py3.txt \
+	&&  pip install -r /pgadmin4/requirements_py2.txt \
 	&&  cd /pgadmin4/web/ \
 	&&  cp config.py config_local.py \
 	&&  sed -i "s/SERVER_MODE = True/SERVER_MODE = False/g" config_local.py \
 	&&  sed -i "s/DEFAULT_SERVER = 'localhost'/DEFAULT_SERVER = '0.0.0.0'/g" config_local.py \
 	&&  apk del .build-deps \
 	&&  rm -rf /root/.cache
+
+# Metadata
+LABEL org.label-schema.url="https://www.pgadmin.org" \
+      org.label-schema.license="PostgreSQL"
 
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
