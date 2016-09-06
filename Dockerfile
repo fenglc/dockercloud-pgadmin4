@@ -1,8 +1,8 @@
 FROM python:2-alpine
 MAINTAINER fenglc <fenglc89@gmail.com>
 
-ENV PGADMIN4_VERSION 		1.0-beta4
-ENV PGADMIN4_DOWNLOAD_URL	https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v1.0-beta4/pip/pgadmin4-1.0b4-py2-none-any.whl
+ENV PGADMIN4_VERSION 		1.0-rc1
+ENV PGADMIN4_DOWNLOAD_URL	https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v1.0-rc1/pip/pgadmin4-1.0rc1-py2-none-any.whl
 
 RUN set -x \
 	&&  apk add --no-cache postgresql-libs \
