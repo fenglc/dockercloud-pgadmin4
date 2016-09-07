@@ -19,7 +19,9 @@ RUN set -x \
 
 # Metadata
 LABEL org.label-schema.url="https://www.pgadmin.org" \
-      org.label-schema.license="PostgreSQL"
+      org.label-schema.license="PostgreSQL" \
+      org.label-schema.name="pgAdmin" \
+      org.label-schema.version="4"
 
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
