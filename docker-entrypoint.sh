@@ -1,5 +1,4 @@
 #!/bin/sh
-	
-cd /usr/local/lib/python2.7/site-packages/pgadmin4
-exec python pgAdmin4.py
+
+exec python /pgadmin4/web/pgAdmin4.py
 

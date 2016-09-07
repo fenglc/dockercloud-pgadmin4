@@ -1,0 +1,3 @@
+[submodule "pgadmin4"]
+	path = pgadmin4
+	url = git://git.postgresql.org/git/pgadmin4.git

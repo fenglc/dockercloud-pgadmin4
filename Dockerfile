@@ -1,8 +1,7 @@
 FROM python:2-alpine
 MAINTAINER fenglc <fenglc89@gmail.com>
 
-ENV PGADMIN4_VERSION 		1.0-rc1
-ENV PGADMIN4_DOWNLOAD_URL	https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v1.0-rc1/pip/pgadmin4-1.0rc1-py2-none-any.whl
+COPY pgadmin4 /pgadmin4	
 
 RUN set -x \
 	&&  apk add --no-cache postgresql-libs \
@@ -10,8 +9,8 @@ RUN set -x \
 			gcc \
 			postgresql-dev \
 			musl-dev \
-	&&  pip install $PGADMIN4_DOWNLOAD_URL \
-	&&  cd /usr/local/lib/python2.7/site-packages/pgadmin4 \
+	&&  pip install -r /pgadmin4/requirements_py2.txt \
+	&&  cd /pgadmin4/web/ \
 	&&  cp config.py config_local.py \
 	&&  sed -i "s/SERVER_MODE = True/SERVER_MODE = False/g" config_local.py \
 	&&  sed -i "s/DEFAULT_SERVER = 'localhost'/DEFAULT_SERVER = '0.0.0.0'/g" config_local.py \
@@ -20,7 +19,9 @@ RUN set -x \
 
 # Metadata
 LABEL org.label-schema.url="https://www.pgadmin.org" \
-      org.label-schema.license="PostgreSQL"
+      org.label-schema.license="PostgreSQL" \
+      org.label-schema.name="pgAdmin" \
+      org.label-schema.version="4"
 
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
