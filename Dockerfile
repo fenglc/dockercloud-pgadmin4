@@ -9,7 +9,7 @@ RUN set -x \
 			gcc \
 			postgresql-dev \
 			musl-dev \
-	&&  pip install -r /pgadmin4/requirements_py2.txt \
+	&&  pip install -r /pgadmin4/requirements.txt \
 	&&  cd /pgadmin4/web/ \
 	&&  cp config.py config_local.py \
 	&&  sed -i "s/SERVER_MODE = True/SERVER_MODE = False/g" config_local.py \
