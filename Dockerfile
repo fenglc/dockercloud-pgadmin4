@@ -24,7 +24,7 @@ RUN set -x \
 	&&  cd /pgadmin4/web/ \
 	&&  cp config.py config_local.py \
 	&&  sed -i "s/SERVER_MODE = True/SERVER_MODE = False/g" config_local.py \
-	&&  sed -i "s/DEFAULT_SERVER = 'localhost'/DEFAULT_SERVER = '0.0.0.0'/g" config_local.py \
+	&&  sed -i "s/DEFAULT_SERVER = 'localhost'/DEFAULT_SERVER = '0.0.0.0'/g" config_local.py
 
 COPY docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
