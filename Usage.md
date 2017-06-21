@@ -24,6 +24,26 @@ Use default administrator account to log in:
 - login: example@pgadmin.org
 - password: pgadmin
 
+# Environment Variables
+
+## MAIL_SERVER
+default 'localhost'
+
+## MAIL_PORT
+default 25
+
+## MAIL_USE_SSL
+default False
+
+## MAIL_USE_TLS
+default False
+
+## MAIL_USERNAME
+default None
+
+## MAIL_PASSWORD
+default None
+
 # Screenshot
 
 ![dashboard](https://www.pgadmin.org/static/img/screenshots/pgadmin4-dashboard.png)
