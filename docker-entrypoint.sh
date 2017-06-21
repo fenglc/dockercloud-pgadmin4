@@ -26,9 +26,13 @@ file_env() {
 if [ "$1" = 'pgadmin4' ]; then
 	cd /usr/local/lib/python3.6/site-packages/pgadmin4
 
-	if [ ! -d "$HOME/.pgadmin" ]; then
+	if [ ! -f "config_local.py" ]; then
 		cp config.py config_local.py
 		sed -i "s/DEFAULT_SERVER = 'localhost'/DEFAULT_SERVER = '0.0.0.0'/g" config_local.py
+
+		DATA_DIR="/var/lib/pgadmin4/data"
+		mkdir -p $DATA_DIR
+		sed -i "s:os.path.realpath(os.path.expanduser(u'~/.pgadmin/')):'${DATA_DIR}':" config_local.py
 
 		export PGADMIN_SETUP_EMAIL="example@pgadmin.org"
 		export PGADMIN_SETUP_PASSWORD="pgadmin"

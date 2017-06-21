@@ -1,23 +1,19 @@
 FROM python:3-alpine
 
-MAINTAINER fenglc <fenglc89@gmail.com>
-
-ENV LANG en_US.utf8
-
 ENV PGADMIN4_VERSION 1.5
 
 # Metadata
 LABEL org.label-schema.name="pgAdmin4" \
       org.label-schema.version="$PGADMIN4_VERSION" \
       org.label-schema.license="PostgreSQL" \
-      org.label-schema.url="https://www.pgadmin.org"
+      org.label-schema.url="https://www.pgadmin.org" \
+      org.label-schema.vcs-url="https://github.com/fenglc/dockercloud-pgAdmin4" 
 
 RUN set -ex \
 	&& apk add --no-cache --virtual .run-deps \
 		bash \
 		postgresql-libs \
 	&& apk add --no-cache --virtual .build-deps \
-		ca-certificates \
 		openssl \
 		gcc \
 		postgresql-dev \
@@ -27,6 +23,8 @@ RUN set -ex \
 	&& apk del .build-deps \
 	&& rm pgadmin4-$PGADMIN4_VERSION-py2.py3-none-any.whl \
 	&& rm -rf /root/.cache
+
+VOLUME /var/lib/pgadmin4
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
