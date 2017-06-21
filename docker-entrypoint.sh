@@ -29,6 +29,7 @@ if [ "$1" = 'pgadmin4' ]; then
 	if [ ! -f "config_local.py" ]; then
 		cp config.py config_local.py
 		sed -i "s/^DEFAULT_SERVER.*/DEFAULT_SERVER = '0.0.0.0'/" config_local.py
+		sed -i "s/DEFAULT_SERVER = 'localhost'/DEFAULT_SERVER = '0.0.0.0'/g" config_local.py
 
 		DATA_DIR="/var/lib/pgadmin4/data"
 		mkdir -p $DATA_DIR
@@ -49,8 +50,10 @@ if [ "$1" = 'pgadmin4' ]; then
 		        s/^MAIL_PASSWORD.*/MAIL_PASSWORD = '${MAIL_PASSWORD}'/" \
 		    config_local.py
 
-		export PGADMIN_SETUP_EMAIL="example@pgadmin.org"
-		export PGADMIN_SETUP_PASSWORD="pgadmin"
+		file_env 'DEFAULT_USER' 'pgadmin4@pgadmin.org'
+		file_env 'DEFAULT_PASSWORD' 'admin'
+		export PGADMIN_SETUP_EMAIL=${DEFAULT_USER}
+		export PGADMIN_SETUP_PASSWORD=${DEFAULT_PASSWORD}
 
 		python setup.py
 
