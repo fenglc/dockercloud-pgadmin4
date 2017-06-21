@@ -1,50 +1,35 @@
-FROM python:2-alpine
+FROM python:3-alpine
+
 MAINTAINER fenglc <fenglc89@gmail.com>
 
+ENV LANG en_US.utf8
+
+ENV PGADMIN4_VERSION 1.5
+
 # Metadata
-LABEL org.label-schema.url="https://www.pgadmin.org" \
+LABEL org.label-schema.name="pgAdmin4" \
+      org.label-schema.version="$PGADMIN4_VERSION" \
       org.label-schema.license="PostgreSQL" \
-      org.label-schema.name="pgAdmin" \
-      org.label-schema.version="4"
-      
-ENV SERVER_MODE=True
-ENV DEFAULT_SERVER=0.0.0.0
+      org.label-schema.url="https://www.pgadmin.org"
 
-ENV MAIL_SERVER=localhost
-ENV MAIL_PORT=25
-ENV MAIL_USE_SSL=False
-ENV MAIL_USE_TLS=False
-ENV MAIL_USERNAME=''
-ENV MAIL_PASSWORD=''
-ENV MAIL_DEBUG=False
+RUN set -ex \
+	&& apk add --no-cache --virtual .run-deps \
+		bash \
+		postgresql-libs \
+	&& apk add --no-cache --virtual .build-deps \
+		ca-certificates \
+		openssl \
+		gcc \
+		postgresql-dev \
+		musl-dev \
+	&& wget "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v$PGADMIN4_VERSION/pip/pgadmin4-$PGADMIN4_VERSION-py2.py3-none-any.whl" \
+	&& pip install pgadmin4-$PGADMIN4_VERSION-py2.py3-none-any.whl \
+	&& apk del .build-deps \
+	&& rm pgadmin4-$PGADMIN4_VERSION-py2.py3-none-any.whl \
+	&& rm -rf /root/.cache
 
-COPY pgadmin4 /pgadmin4	
-
-RUN set -x \
-	&&  apk add --no-cache postgresql-libs \
-	&&  apk add --no-cache --virtual .build-deps \
-			gcc \
-			postgresql-dev \
-			musl-dev \
-	&&  pip install -r /pgadmin4/requirements.txt \
-	&&  apk del .build-deps \
-	&&  rm -rf /root/.cache
-
-# Configure
-RUN set -x \
-	&&  cd /pgadmin4/web/ \
-	&&  cp config.py config_local.py \
-	&&  sed -i "s/SERVER_MODE = True/SERVER_MODE = ${SERVER_MODE}/g" config_local.py \	
-	&&  sed -i "s/DEFAULT_SERVER = 'localhost'/DEFAULT_SERVER = '${DEFAULT_SERVER}'/g" config_local.py \
-	&&  sed -i "s/MAIL_SERVER = 'localhost'/MAIL_SERVER = '${MAIL_SERVER}'/g" config_local.py \ 
-	&&  sed -i "s/MAIL_PORT = 25/MAIL_PORT = ${MAIL_PORT}/g" config_local.py \
-	&&  sed -i "s/MAIL_USE_SSL = False/MAIL_USE_SSL = ${MAIL_USE_SSL}/g" config_local.py \
-	&&  sed -i "s/MAIL_USE_TLS = False/MAIL_USE_TLS = ${MAIL_USE_TLS}/g" config_local.py \
-	&&  sed -i "s/MAIL_USERNAME = ''/MAIL_USERNAME = '${MAIL_USERNAME}'/g" config_local.py \
-	&&  sed -i "s/MAIL_PASSWORD = ''/MAIL_PASSWORD = '${MAIL_PASSWORD}'/g" config_local.py \
-	&&  sed -i "s/MAIL_DEBUG = False/MAIL_DEBUG = ${MAIL_DEBUG}/g" config_local.py
-
-COPY docker-entrypoint.sh /
-ENTRYPOINT ["/docker-entrypoint.sh"]
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 5050
+CMD ["pgadmin4"]

@@ -19,6 +19,11 @@ docker run --name some-pgadmin4 \
 
 Then you can hit http://localhost:5050 or http://host-ip:5050 in your browser.
 
+Use default administrator account to log in:
+
+- login: example@pgadmin.org
+- password: pgadmin
+
 # Screenshot
 
-![dashboard](https://www.pgadmin.org/images/pgadmin4-dashboard.png)
+![dashboard](https://www.pgadmin.org/static/img/screenshots/pgadmin4-dashboard.png)
