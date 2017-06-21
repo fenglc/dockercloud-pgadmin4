@@ -1,10 +1,10 @@
-# What is pgAdmin?
+## What is pgAdmin?
 
 [pgAdmin](https://www.pgadmin.org) is an open source administration and management tool for the PostgreSQL database.
 
 It is Free Software released under the [PostgreSQL License](https://www.pgadmin.org/licence.php).
 
-# How to use
+## How to use
 
 [![](https://img.shields.io/docker/pulls/fenglc/pgadmin4.svg)](https://hub.docker.com/r/fenglc/pgadmin4 "Click to view the image on Docker Hub") [![](https://images.microbadger.com/badges/image/fenglc/pgadmin4.svg)](http://microbadger.com/images/fenglc/pgadmin4 "Download size and number of layers") [![](https://images.microbadger.com/badges/license/fenglc/pgadmin4.svg)](https://www.pgadmin.org/licence.php "Click to view the license for this image")
 
@@ -24,26 +24,27 @@ Use default administrator account to log in:
 - login: example@pgadmin.org
 - password: pgadmin
 
-# Environment Variables
+## Environment Variables
 
-## MAIL_SERVER
+- ### MAIL_SERVER
 default 'localhost'
 
-## MAIL_PORT
+- ### MAIL_PORT
 default 25
 
-## MAIL_USE_SSL
+- ### MAIL_USE_SSL
 default False
 
-## MAIL_USE_TLS
+- ### MAIL_USE_TLS
 default False
 
-## MAIL_USERNAME
+- ### MAIL_USERNAME
 default None
 
-## MAIL_PASSWORD
+- ### MAIL_PASSWORD
 default None
 
-# Screenshot
+## Screenshot
 
 ![dashboard](https://www.pgadmin.org/static/img/screenshots/pgadmin4-dashboard.png)
+
