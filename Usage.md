@@ -21,7 +21,7 @@ Then you can hit http://localhost:5050 or http://host-ip:5050 in your browser.
 
 Use default administrator account to log in:
 
-- user: ppgadmin4@pgadmin.org
+- user: pgadmin4@pgadmin.org
 - password: admin
 
 ## Environment Variables
