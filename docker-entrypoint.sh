@@ -24,11 +24,10 @@ file_env() {
 }
 
 if [ "$1" = 'pgadmin4' ]; then
-	cd /usr/local/lib/python3.6/site-packages/pgadmin4
+	cd "$(python -c 'import os; print(os.path.dirname(os.__file__))')/site-packages/pgadmin4"
 
 	if [ ! -f "config_local.py" ]; then
 		cp config.py config_local.py
-		sed -i "s/^DEFAULT_SERVER.*/DEFAULT_SERVER = '0.0.0.0'/" config_local.py
 		sed -i "s/DEFAULT_SERVER = 'localhost'/DEFAULT_SERVER = '0.0.0.0'/g" config_local.py
 
 		DATA_DIR="/var/lib/pgadmin4/data"
