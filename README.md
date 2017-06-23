@@ -1,4 +1,6 @@
-# dockercloud-pgAdmin4
+# pgAdmin 4
+
+[![](https://img.shields.io/docker/pulls/fenglc/pgadmin4.svg)](https://hub.docker.com/r/fenglc/pgadmin4 "Click to view the image on Docker Hub") [![](https://images.microbadger.com/badges/image/fenglc/pgadmin4.svg)](http://microbadger.com/images/fenglc/pgadmin4 "Download size and number of layers") [![](https://images.microbadger.com/badges/license/fenglc/pgadmin4.svg)](https://www.pgadmin.org/licence.php "Click to view the license for this image")
 
 ## What is pgAdmin?
 
@@ -6,21 +8,64 @@
 
 It is Free Software released under the [PostgreSQL License](https://www.pgadmin.org/licence.php).
 
-## Docker Image
+## How to use this image
 
-[![](https://img.shields.io/docker/pulls/fenglc/pgadmin4.svg)](https://hub.docker.com/r/fenglc/pgadmin4 "Click to view the image on Docker Hub") [![](https://images.microbadger.com/badges/image/fenglc/pgadmin4.svg)](http://microbadger.com/images/fenglc/pgadmin4 "Download size and number of layers") [![](https://images.microbadger.com/badges/license/fenglc/pgadmin4.svg)](https://www.pgadmin.org/licence.php "Click to view the license for this image")
+In order to run a container with our image, execute:
 
-### Running
+```
+docker run --name some-pgadmin4 \
+           --link some-postgres:postgres \
+           -p 5050:5050 \
+           -d fenglc/pgadmin4
+```
 
-The docker run command pulls the latest image of this code from [Docker hub](https://hub.docker.com/r/fenglc/pgadmin4).
+Then you can hit http://localhost:5050 or http://host-ip:5050 in your browser.
+
+Use default administrator account to log in:
+
+- user: pgadmin4@pgadmin.org
+- password: admin
+
+## Screenshot
+
+![dashboard](https://www.pgadmin.org/static/img/screenshots/pgadmin4-dashboard.png "Server dashboard")
+
+## Environment Variables
+
+- #### DEFAULT_USER
+default 'pgadmin4@pgadmin.org'
+
+- #### DEFAULT_PASSWORD
+default 'admin'
+
+- #### MAIL_SERVER
+default 'localhost'
+
+- #### MAIL_PORT
+default 25
+
+- #### MAIL_USE_SSL
+default False
+
+- #### MAIL_USE_TLS
+default False
+
+- #### MAIL_USERNAME
+default None
+
+- #### MAIL_PASSWORD
+default None
+
+## Open source
 
 ### Building from source
 
 If you want to build and run your own version locally:
 
-- Clone this repository.
+- Clone [this](https://github.com/fenglc/dockercloud-pgAdmin4) repository.
 - Build your own version of the Docker image.
 
-## Licensing
+### License
 
 Refer to the LICENSE file (MIT License).
+
