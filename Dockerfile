@@ -7,7 +7,7 @@ LABEL org.label-schema.name="pgAdmin4" \
       org.label-schema.version="$PGADMIN4_VERSION" \
       org.label-schema.license="PostgreSQL" \
       org.label-schema.url="https://www.pgadmin.org" \
-      org.label-schema.vcs-url="https://github.com/fenglc/dockercloud-pgAdmin4" 
+      org.label-schema.vcs-url="https://github.com/fenglc/dockercloud-pgAdmin4"
 
 RUN set -ex \
 	&& apk add --no-cache --virtual .run-deps \
@@ -17,6 +17,7 @@ RUN set -ex \
 		openssl \
 		gcc \
 		postgresql-dev \
+    postgresql-client \
 		musl-dev \
 	&& wget "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v$PGADMIN4_VERSION/pip/pgadmin4-$PGADMIN4_VERSION-py2.py3-none-any.whl" \
 	&& pip install pgadmin4-$PGADMIN4_VERSION-py2.py3-none-any.whl \
