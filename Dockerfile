@@ -16,6 +16,7 @@ RUN set -ex \
 	&& apk add --no-cache --virtual .build-deps \
 		openssl \
 		gcc \
+		postgresql \
 		postgresql-dev \
 		musl-dev \
 	&& apk add --no-cache \
