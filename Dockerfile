@@ -1,6 +1,6 @@
 FROM python:3-alpine3.6
 
-ENV PGADMIN4_VERSION 1.6
+ENV PGADMIN4_VERSION 2.0-rc2
 
 # Metadata
 LABEL org.label-schema.name="pgAdmin4" \
@@ -12,16 +12,15 @@ LABEL org.label-schema.name="pgAdmin4" \
 RUN set -ex \
 	&& apk add --no-cache --virtual .run-deps \
 		bash \
+		postgresql \
 		postgresql-libs \
 	&& apk add --no-cache --virtual .build-deps \
-		openssl \
 		gcc \
-		postgresql \
-		postgresql-dev \
 		musl-dev \
-	&& apk add --no-cache \
-		postgresql \
-	&& wget "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v$PGADMIN4_VERSION/pip/pgadmin4-$PGADMIN4_VERSION-py2.py3-none-any.whl" \
+		openssl \
+		postgresql-dev \
+	&& wget "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v2.0-rc2/pip/pgadmin4-2.0rc2-py2.py3-none-any.whl" \
+		-O pgadmin4-$PGADMIN4_VERSION-py2.py3-none-any.whl \
 	&& pip install pgadmin4-$PGADMIN4_VERSION-py2.py3-none-any.whl \
 	&& apk del .build-deps \
 	&& rm pgadmin4-$PGADMIN4_VERSION-py2.py3-none-any.whl \
