@@ -19,12 +19,9 @@ RUN set -ex \
 		musl-dev \
 		openssl \
 		postgresql-dev \
-	&& wget "https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v2.0-rc2/pip/pgadmin4-2.0rc2-py2.py3-none-any.whl" \
-		-O pgadmin4-$PGADMIN4_VERSION-py2.py3-none-any.whl \
-	&& pip install pgadmin4-$PGADMIN4_VERSION-py2.py3-none-any.whl \
-	&& apk del .build-deps \
-	&& rm pgadmin4-$PGADMIN4_VERSION-py2.py3-none-any.whl \
-	&& rm -rf /root/.cache
+	&& pip --no-cache-dir install \
+		https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v2.0-rc2/pip/pgadmin4-2.0rc2-py2.py3-none-any.whl \
+	&& apk del .build-deps
 
 VOLUME /var/lib/pgadmin4
 
