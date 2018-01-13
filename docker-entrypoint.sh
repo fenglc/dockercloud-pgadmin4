@@ -54,6 +54,7 @@ if [ "$1" = 'pgadmin4' ]; then
 		export PGADMIN_SETUP_EMAIL=${DEFAULT_USER}
 		export PGADMIN_SETUP_PASSWORD=${DEFAULT_PASSWORD}
 
+		pip install flask_htmlmin
 		python setup.py
 
 		echo
