@@ -20,6 +20,7 @@ RUN set -ex \
 		openssl \
 		postgresql-dev \
 	&& pip --no-cache-dir install \
+		flask_htmlmin \
 		https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v2.1/pip/pgadmin4-2.1-py2.py3-none-any.whl \
 	&& apk del .build-deps
 
