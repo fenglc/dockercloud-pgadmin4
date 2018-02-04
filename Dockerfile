@@ -24,7 +24,7 @@ RUN set -ex \
 		https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v2.1/pip/pgadmin4-2.1-py2.py3-none-any.whl \
 	&& apk del .build-deps
 
-VOLUME /var/lib/pgadmin4
+VOLUME /var/lib/pgadmin
 
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]

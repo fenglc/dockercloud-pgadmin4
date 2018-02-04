@@ -28,11 +28,6 @@ if [ "$1" = 'pgadmin4' ]; then
 
 	if [ ! -f "config_local.py" ]; then
 		cp config.py config_local.py
-		sed -i "s/DEFAULT_SERVER = '127.0.0.1'/DEFAULT_SERVER = '0.0.0.0'/g" config_local.py
-
-		DATA_DIR="/var/lib/pgadmin4/data"
-		mkdir -p $DATA_DIR
-		sed -i "s:os.path.realpath(os.path.expanduser(u'~/.pgadmin/')):'${DATA_DIR}':" config_local.py
 
 		file_env 'MAIL_SERVER' 'localhost'
 		file_env 'MAIL_PORT'  "25"
@@ -41,7 +36,8 @@ if [ "$1" = 'pgadmin4' ]; then
 		file_env 'MAIL_USERNAME' ''
 		file_env 'MAIL_PASSWORD' ''
 
-		sed -i "s/^MAIL_SERVER.*/MAIL_SERVER = '${MAIL_SERVER}'/; \
+		sed -i "s/^DEFAULT_SERVER =.*/DEFAULT_SERVER = '0.0.0.0'/; \
+		        s/^MAIL_SERVER.*/MAIL_SERVER = '${MAIL_SERVER}'/; \
 		        s/^MAIL_PORT.*/MAIL_PORT = ${MAIL_PORT}/; \
 		        s/^MAIL_USE_SSL.*/MAIL_USE_SSL = ${MAIL_USE_SSL}/; \
 		        s/^MAIL_USE_TLS.*/MAIL_USE_TLS = ${MAIL_USE_TLS}/; \
