@@ -12,6 +12,7 @@ LABEL org.label-schema.name="pgAdmin4" \
 RUN set -ex \
 	&& apk add --no-cache --virtual .run-deps \
 		bash \
+		ca-certificates \
 		postgresql \
 		postgresql-libs \
 		python3 \
