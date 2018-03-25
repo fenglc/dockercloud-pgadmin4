@@ -1,4 +1,4 @@
-FROM python:3-alpine3.6
+FROM python:3.6-alpine
 
 ENV PGADMIN4_VERSION 2.1
 
