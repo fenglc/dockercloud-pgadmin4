@@ -1,0 +1,19 @@
+language: bash
+services: docker
+
+env:
+  - VARIANT=python3.6/alpine
+  - VARIANT=python3.6/slim
+
+before_script:
+  - env | sort
+  - cd "$VARIANT"
+  - slash='/'; image="pgadmin4:${VARIANT//$slash/-}"
+
+script:
+  - travis_retry docker build -t "$image" .
+
+after_script:
+  - docker images
+
+# vim:set et ts=2 sw=2:

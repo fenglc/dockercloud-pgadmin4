@@ -1,4 +1,4 @@
-FROM python:slim
+FROM python:3.6-slim
 
 # hack to make postgresql-client install work on slim
 RUN mkdir -p /usr/share/man/man1 \
