@@ -3,7 +3,9 @@ services: docker
 
 env:
   - VARIANT=python3.6/alpine
+  - VARIANT=python3.6/jessie
   - VARIANT=python3.6/slim
+  - VARIANT=python3.6/stretch
 
 before_script:
   - env | sort
