@@ -2,6 +2,10 @@ language: bash
 services: docker
 
 env:
+  - VARIANT=python2.7/alpine
+  - VARIANT=python2.7/jessie
+  - VARIANT=python2.7/slim
+  - VARIANT=python2.7/stretch
   - VARIANT=python3.6/alpine
   - VARIANT=python3.6/jessie
   - VARIANT=python3.6/slim
