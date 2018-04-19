@@ -11,8 +11,8 @@ RUN set -ex \
 		postgresql-client \
 	&& rm -rf /var/lib/apt/lists/*
 
-ENV PGADMIN4_VERSION 2.1
-ENV PGADMIN4_DOWNLOAD_URL https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v2.1/pip/pgadmin4-2.1-py2.py3-none-any.whl
+ENV PGADMIN4_VERSION 3.0
+ENV PGADMIN4_DOWNLOAD_URL https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v3.0/pip/pgadmin4-3.0-py2.py3-none-any.whl
 
 # Metadata
 LABEL org.label-schema.name="pgAdmin4" \

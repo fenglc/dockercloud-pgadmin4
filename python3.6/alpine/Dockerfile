@@ -1,6 +1,13 @@
 FROM python:3.6-alpine
 
-ENV PGADMIN4_VERSION 2.1
+# runtime dependencies
+RUN set -ex \
+	&& apk add --no-cache --virtual .pgadmin4-rundeps \
+		bash \
+		postgresql
+
+ENV PGADMIN4_VERSION 3.0
+ENV PGADMIN4_DOWNLOAD_URL https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v3.0/pip/pgadmin4-3.0-py2.py3-none-any.whl
 
 # Metadata
 LABEL org.label-schema.name="pgAdmin4" \
@@ -10,18 +17,12 @@ LABEL org.label-schema.name="pgAdmin4" \
       org.label-schema.vcs-url="https://github.com/fenglc/dockercloud-pgAdmin4"
 
 RUN set -ex \
-	&& apk add --no-cache --virtual .run-deps \
-		bash \
-		postgresql \
-		postgresql-libs \
 	&& apk add --no-cache --virtual .build-deps \
 		gcc \
 		musl-dev \
-		openssl \
 		postgresql-dev \
 	&& pip --no-cache-dir install \
-		flask_htmlmin \
-		https://ftp.postgresql.org/pub/pgadmin/pgadmin4/v2.1/pip/pgadmin4-2.1-py2.py3-none-any.whl \
+		$PGADMIN4_DOWNLOAD_URL \
 	&& apk del .build-deps
 
 VOLUME /var/lib/pgadmin
